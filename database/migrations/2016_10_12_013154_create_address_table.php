@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OrdersTable extends Migration
+class CreateAddressTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class OrdersTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('orders', function (Blueprint $table) {
-            $table->increments('order_id');
-            $table->integer('address_id');
-            $table->integer('user_id')->references('id')->on('users');
-            $table->timestamp('created_at')->nullable();
+        Schema::table('address', function (Blueprint $table) {
+            //
+            $table->increments('address_id');
         });
     }
 
@@ -29,6 +26,8 @@ class OrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('orders');
+        Schema::table('address', function (Blueprint $table) {
+            //
+        });
     }
 }
