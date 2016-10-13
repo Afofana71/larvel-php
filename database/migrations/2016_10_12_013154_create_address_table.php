@@ -13,9 +13,13 @@ class CreateAddressTable extends Migration
      */
     public function up()
     {
-        Schema::table('address', function (Blueprint $table) {
-            //
-            $table->increments('address_id');
+        Schema::create('address', function (Blueprint $table) {
+            // 
+            $table->increments('id');
+            $table->string('street_one');
+            $table->string('street_two');
+            $table->string('zipcode');
+            $table->integer('fk_user_id')->references('id')->on('users');
         });
     }
 
@@ -26,8 +30,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::table('address', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('address');
     }
 }
