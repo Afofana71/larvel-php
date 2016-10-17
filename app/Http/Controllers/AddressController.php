@@ -1,21 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
+use App\Address;
+use Request;
+use Illuminate\Support\Facades\View;
 use App\Http\Requests;
 
 class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  int  $user_id
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        // get all the address records associated with a user
+		    $address=Address::all();
+        return view('address.index', compact('address'));
     }
 
     /**
@@ -26,6 +28,7 @@ class AddressController extends Controller
     public function create()
     {
         //
+        return view('address.create');
     }
 
     /**
@@ -37,6 +40,10 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         //
+        // var_dump(Request);
+        $address=Request::all();
+        Address::create($address);
+        return redirect('address');
     }
 
     /**
