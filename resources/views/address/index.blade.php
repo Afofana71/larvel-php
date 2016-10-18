@@ -21,9 +21,9 @@
              <td>{{ $addr->street_two }}</td>
              <td>{{ $addr->zipcode }}</td>
              <td><a href="{{url('address',$address->id)}}" class="btn btn-primary">Read</a></td>
-             <td><a href="{{route('address.edit',$addtess->id)}}" class="btn btn-warning">Update</a></td>
+             <td><a href="{{route('address.edit',$address->id)}}" class="btn btn-warning">Update</a></td>
              <td>
-             
+
              {!! Form::close() !!}
              </td>
          </tr>

@@ -226,7 +226,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+          <img class="third-slide" src="https://i.ytimg.com/vi/RzmQP4uTyoo/maxresdefault.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption text-xs-right">
               <h1>One more for good measure.</h1>
@@ -256,7 +256,7 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="https://www.familydollar.com/content/familydollar/en/products-services/_jcr_content/par/productservices/image1.img.jpg/1466625027422.jpg" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-square" src="https://www.familydollar.com/content/familydollar/en/products-services/_jcr_content/par/productservices/image1.img.jpg/1466625027422.jpg" alt="Generic placeholder image" width="140" height="140">
           <h2>Test</h2>
           <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
           <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
