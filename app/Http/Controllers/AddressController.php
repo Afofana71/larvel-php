@@ -5,6 +5,9 @@ use App\Address;
 use Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests;
+use Cache;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
@@ -16,8 +19,13 @@ class AddressController extends Controller
     public function index()
     {
         // get all the address records associated with a user
-		    $address=Address::all();
+        $user = Auth::user();
+        $address = DB::table('address')->where('fk_user_id', $user['id'] )->get();
         return view('address.index', compact('address'));
+
+
+
+echo $user->name;
     }
 
     /**
@@ -41,8 +49,18 @@ class AddressController extends Controller
     {
         //
         // var_dump(Request);
+        $user = Auth::user();
         $address=Request::all();
-        Address::create($address);
+        var_dump($address);
+        //Address::create($address);
+        DB::table('address')->insert(
+          [
+            'street_one' => $address['street_one'],
+            'zipcode' => $address['zipcode'],
+            'street_two' => $address['street_two'],
+            'fk_user_id' => $user['id']
+          ]
+        );
         return redirect('address');
     }
 
@@ -66,6 +84,12 @@ class AddressController extends Controller
     public function edit($id)
     {
         //
+        $address = DB::table('address')->where('id', $id)->first();
+        var_dump($address);
+        $zipcode = $address->zipcode;
+        $street_two = $address->street_two;
+        $street_one = $address->street_one;
+        return view('address.edit', compact('zipcode', 'street_two', 'street_one'));
     }
 
     /**
@@ -78,6 +102,7 @@ class AddressController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -89,5 +114,7 @@ class AddressController extends Controller
     public function destroy($id)
     {
         //
+        Address::destroy($id);
+        return redirect('address');
     }
 }

@@ -85,7 +85,8 @@ class WidgetsController extends Controller
     public function destroy($id)
     {
         //
-         Widgets::delete($widgets);
+        
+        Widgets::destroy($id);
         return redirect('widgets');
     }
 }
