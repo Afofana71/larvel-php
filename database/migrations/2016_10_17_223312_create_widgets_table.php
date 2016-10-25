@@ -1,10 +1,11 @@
+
 <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressTable extends Migration
+class CreateWidgetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +14,16 @@ class CreateAddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('widgets', function (Blueprint $table) {
             //
             $table->increments('id');
-            $table->string('street_one');
-            $table->string('street_two');
-            $table->string('zipcode');
-            $table->integer('fk_user_id')->references('id')->on('users');
+            $table->decimal('cost', 10,4);
+            $table->integer('color');
+            $table->string('name', 200);
+            $table->string('description', 2000);
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -30,5 +32,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::drop('address');my
+        Schema::drop('widgets');
+    }
 }

@@ -1,31 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Address;
+use App\Widgets;
 use Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests;
-use Cache;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
-class AddressController extends Controller
+class WidgetsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @param  int  $user_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // get all the address records associated with a user
-        $user = Auth::user();
-        $address = DB::table('address')->where('fk_user_id', $user['id'] )->get();
-        return view('address.index', compact('address'));
-
-
-
-echo $user->name;
+       $widgets=Widgets::all();
+       return view('widgets.index',compact('widgets'));
     }
 
     /**
@@ -35,8 +26,7 @@ echo $user->name;
      */
     public function create()
     {
-        //
-        return view('address.create');
+       return view('widgets.create');
     }
 
     /**
@@ -47,21 +37,9 @@ echo $user->name;
      */
     public function store(Request $request)
     {
-        //
-        // var_dump(Request);
-        $user = Auth::user();
-        $address=Request::all();
-        var_dump($address);
-        //Address::create($address);
-        DB::table('address')->insert(
-          [
-            'street_one' => $address['street_one'],
-            'zipcode' => $address['zipcode'],
-            'street_two' => $address['street_two'],
-            'fk_user_id' => $user['id']
-          ]
-        );
-        return redirect('address');
+         $widgets=Request::all();
+        Widgets::create($widgets);
+        return redirect('widgets');
     }
 
     /**
@@ -84,12 +62,6 @@ echo $user->name;
     public function edit($id)
     {
         //
-        $address = DB::table('address')->where('id', $id)->first();
-        var_dump($address);
-        $zipcode = $address->zipcode;
-        $street_two = $address->street_two;
-        $street_one = $address->street_one;
-        return view('address.edit', compact('zipcode', 'street_two', 'street_one'));
     }
 
     /**
@@ -102,7 +74,6 @@ echo $user->name;
     public function update(Request $request, $id)
     {
         //
-
     }
 
     /**
@@ -114,7 +85,8 @@ echo $user->name;
     public function destroy($id)
     {
         //
-        Address::destroy($id);
-        return redirect('address');
+        
+        Widgets::destroy($id);
+        return redirect('widgets');
     }
 }
